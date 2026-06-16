@@ -188,13 +188,9 @@ Here's a real example of the digest email, showing all four sections in a single
 
 <img src="assets/screenshots/section-2-new-job.png" alt="New job with match score and description">
 
-**3 — Jobs filtered out (score below 6)**
+**3 — Filtered out jobs and reminders from previous digest**
 
-<img src="assets/screenshots/section-3-filtered.png" alt="Jobs filtered out with one-line reasons">
-
-**4 — Reminders from previous digest**
-
-<img src="assets/screenshots/section-4-reminders.png" alt="Jobs from previous digest not yet applied to">
+<img src="assets/screenshots/section-3-filtered.png" alt="Jobs filtered out with reasons, and reminders for pending applications">
 
 The email is written in Hebrew and contains four sections:
 
