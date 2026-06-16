@@ -176,6 +176,29 @@ That's it. The agent is now set up and will run every morning automatically.
 
 ---
 
+## Example — What the daily email looks like
+
+Here's a real example of the digest email, showing all four sections in a single morning run:
+
+**Part 1 — Application confirmations and new jobs**
+
+<img src="assets/screenshots/email-digest-part1.png" width="900" alt="Daily digest email — top half">
+
+**Part 2 — Filtered jobs and reminders**
+
+<img src="assets/screenshots/email-digest-part2.png" width="900" alt="Daily digest email — bottom half">
+
+The email is written in Hebrew and contains four sections:
+
+| Section | What it shows |
+|---|---|
+| **עדכוני מועמדות** (Application updates) | Jobs the agent detected you applied to in the last 24 hours, confirmed from Gmail — with the original score and the digest they appeared in |
+| **משרות חדשות** (New jobs) | Jobs scoring 6 or higher, with a description, match score, and a direct LinkedIn link |
+| **הוחרגו** (Filtered out) | Jobs that scored below 6, with a one-line reason for each — so you don't have to wonder |
+| **תזכורות** (Reminders) | Jobs from previous digests you haven't acted on yet — shown until 3 days pass |
+
+---
+
 ## Daily use
 
 You don't need to do anything. Every morning you'll receive an email with the day's job matches.
@@ -260,6 +283,7 @@ You only ever need to touch: `cv/` (your CV) and `config/job_preferences.yaml` (
 - Requires an Anthropic account (Claude Code)
 - Works based on LinkedIn job alert emails — you need alerts set up in your LinkedIn account
 - The daily digest is in Hebrew by default
+- Some LinkedIn application confirmation emails include only the company name (e.g. "your application was sent to JFrog") with no job title. In these cases the agent logs the application with a ⚠️ warning and notes that it couldn't record the specific role — you may want to check LinkedIn manually for the exact title
 
 ---
 
