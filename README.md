@@ -27,6 +27,7 @@ Built on [Claude Code](https://claude.ai/code) (Anthropic's CLI). Runs on Window
 | Anthropic account | For Claude Code access |
 | Gmail account | With 2-Step Verification enabled |
 | Gmail App Password | See step 3 below |
+| LinkedIn job alerts | Set up at linkedin.com → Jobs → Job Alerts |
 
 ---
 
