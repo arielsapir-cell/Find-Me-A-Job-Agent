@@ -180,13 +180,21 @@ That's it. The agent is now set up and will run every morning automatically.
 
 Here's a real example of the digest email, showing all four sections in a single morning run:
 
-**Part 1 — Application confirmations and new jobs**
+**1 — Email title and confirmed applications**
 
-<img src="assets/screenshots/email-digest-part1.png" width="900" alt="Daily digest email — top half">
+<img src="assets/screenshots/section-1-updates.png" alt="Email title and application confirmations">
 
-**Part 2 — Filtered jobs and reminders**
+**2 — New job match (example)**
 
-<img src="assets/screenshots/email-digest-part2.png" width="900" alt="Daily digest email — bottom half">
+<img src="assets/screenshots/section-2-new-job.png" alt="New job with match score and description">
+
+**3 — Jobs filtered out (score below 6)**
+
+<img src="assets/screenshots/section-3-filtered.png" alt="Jobs filtered out with one-line reasons">
+
+**4 — Reminders from previous digest**
+
+<img src="assets/screenshots/section-4-reminders.png" alt="Jobs from previous digest not yet applied to">
 
 The email is written in Hebrew and contains four sections:
 
