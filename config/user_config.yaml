@@ -1,0 +1,4 @@
+# user_config.yaml — Edit this before running the agent
+
+email: "your.email@gmail.com"   # Your Gmail address — digest will be sent here
+name: "Your Name"               # Your full name — used by the agent when matching jobs

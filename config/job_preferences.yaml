@@ -1,0 +1,106 @@
+# job_preferences.yaml — Configure to match your target roles
+
+candidate_name: "Your Name"     # Update this to match user_config.yaml
+
+# Job families you're targeting — the agent uses these to filter and score
+target_job_families:
+  - "Product Manager"
+  - "Growth Product Manager"
+  - "Growth PM"
+  - "Monetization"
+  - "Lifecycle"
+  - "Retention"
+  - "Product Marketing"
+  # Add more as needed, in English and/or Hebrew
+
+# Title keywords — jobs must contain at least one of these to be considered
+title_keywords_include:
+  - "product manager"
+  - "growth"
+  - "monetization"
+  - "lifecycle"
+  - "retention"
+  - "product marketing"
+  - "brand"
+  - "innovation"
+  - "mobile"
+  - "digital"
+
+# Title keywords — jobs containing any of these will be excluded
+title_keywords_exclude:
+  - "sales"
+  - "account executive"
+  - "business development representative"
+  - "customer success"
+  - "qa engineer"
+  - "software engineer"
+  - "backend engineer"
+  - "frontend engineer"
+
+# Company types you prefer
+preferred_company_types:
+  - "B2C"
+  - "B2B2C"
+
+# Set to true to allow other company types if the role is a strong fit
+allow_other_company_types: true
+
+# Preferred locations (adjust to your country/region)
+locations_preferred:
+  - "Tel Aviv"
+  - "Ramat Gan"
+  - "Herzliya"
+  - "Center District"
+  - "Israel"
+
+remote_policy:
+  allow_global_remote: true
+  allow_relocation: false
+
+# Scoring thresholds
+minimum_match_score_to_report: 6
+excellent_fit_score_min: 8
+
+score_meaning:
+  "8-10": "Excellent fit / very strong match"
+  "6-7": "Relevant but not perfect"
+  "1-5": "Low relevance"
+
+# Seniority rules — adjust to your level
+seniority_rules:
+  product_manager:
+    target_levels:
+      - "mid"
+    allow_senior_if_requirements_reasonable: true
+    avoid_highly_technical_pm: true
+  non_pm_tracks:
+    target_levels:
+      - "mid"
+      - "senior"
+      - "lead"
+      - "manager"
+    allow_if_requirements_reasonable: true
+
+language_preference:
+  jobs: "any"
+  summary_output: "hebrew"   # Change to "english" for English digests
+
+output_preferences:
+  format: "paragraphs_only"
+  use_tables: false
+  max_sentences_per_job: 5
+  mention_excellent_fit_only_for_scores_8_to_10: true
+
+applied_detection:
+  use_linkedin_status: true
+  use_email_confirmations: true
+  use_manual_memory_file: true
+
+deduplication:
+  enabled: true
+  prefer_linkedin_url_when_duplicate: true
+
+behavioral_learning:
+  applied_jobs_signal_high_fit: true
+  boost_similar_jobs_if_user_applied: true
+  never_auto_apply: true

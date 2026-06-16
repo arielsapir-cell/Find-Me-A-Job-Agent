@@ -1,0 +1,25 @@
+# Personal data — never commit these
+cv/*.pdf
+cv/*.docx
+
+# Auto-generated output (keep the folder, ignore contents)
+output/*
+!output/.gitkeep
+
+# Memory files — empty templates are tracked; personal data is not
+# After setup, your data will be added here automatically — do not commit these
+memory/memory_applied_jobs.md
+memory/memory_pending_jobs.md
+memory/memory_user_feedback.md
+
+# Credentials (should never be here, but just in case)
+*.txt
+gmail_creds.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude local state
+.claude/settings.local.json
