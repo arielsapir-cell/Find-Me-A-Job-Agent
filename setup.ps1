@@ -46,18 +46,32 @@ if (-not (Test-Path $UserConfigPath)) {
 }
 
 $ConfigRaw = Get-Content $UserConfigPath -Raw
+
 $EmailMatch = [regex]::Match($ConfigRaw, 'email:\s*"([^"]+)"')
 if (-not $EmailMatch.Success -or $EmailMatch.Groups[1].Value -eq "your.email@gmail.com") {
     Write-Host ""
     Write-Host "Please enter your Gmail address:"
     $UserEmail = Read-Host "Email"
     $ConfigRaw = $ConfigRaw -replace 'email:\s*"[^"]*"', "email: `"$UserEmail`""
-    [System.IO.File]::WriteAllText($UserConfigPath, $ConfigRaw, [System.Text.Encoding]::UTF8)
 }
 else {
     $UserEmail = $EmailMatch.Groups[1].Value
     Write-Host "[OK] Email: $UserEmail" -ForegroundColor Green
 }
+
+$NameMatch = [regex]::Match($ConfigRaw, 'name:\s*"([^"]+)"')
+if (-not $NameMatch.Success -or $NameMatch.Groups[1].Value -eq "Your Name") {
+    Write-Host ""
+    Write-Host "Please enter your full name (used in job fit analysis):"
+    $UserName = Read-Host "Full name"
+    $ConfigRaw = $ConfigRaw -replace 'name:\s*"[^"]*"', "name: `"$UserName`""
+}
+else {
+    $UserName = $NameMatch.Groups[1].Value
+    Write-Host "[OK] Name: $UserName" -ForegroundColor Green
+}
+
+[System.IO.File]::WriteAllText($UserConfigPath, $ConfigRaw, [System.Text.Encoding]::UTF8)
 
 # ── 4. Gmail App Password ─────────────────────────────
 Write-Host ""

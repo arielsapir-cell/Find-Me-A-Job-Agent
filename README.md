@@ -23,7 +23,8 @@ Built on [Claude Code](https://claude.ai/code) (Anthropic's CLI). Runs on Window
 | Requirement | Notes |
 |---|---|
 | Windows 10 / 11 | Required (uses PowerShell + Task Scheduler) |
-| [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) | `npm install -g @anthropic-ai/claude-code` |
+| [Node.js](https://nodejs.org) (v18+) | Required to install Claude Code via npm |
+| [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) | `npm install -g @anthropic-ai/claude-code` then `claude login` |
 | Anthropic account | For Claude Code access |
 | Gmail account | With 2-Step Verification enabled |
 | Gmail App Password | See step 3 below |
@@ -36,8 +37,8 @@ Built on [Claude Code](https://claude.ai/code) (Anthropic's CLI). Runs on Window
 ### Step 1 — Clone the repo
 
 ```
-git clone https://github.com/YOUR_USERNAME/linkedin-job-agent.git
-cd linkedin-job-agent
+git clone https://github.com/arielsapir-cell/Find-Me-A-Job-Agent.git
+cd Find-Me-A-Job-Agent
 ```
 
 ### Step 2 — Add your CV
