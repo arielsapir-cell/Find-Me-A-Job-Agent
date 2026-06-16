@@ -220,6 +220,31 @@ A score of 8–10 is marked as "התאמה מצוינת" (excellent fit).
 
 ---
 
+## What's in the project folder
+
+Once you download the project, you'll see these files and folders:
+
+```
+├── setup.ps1                ← run this once to set everything up
+├── run_job_agent.ps1        ← the agent itself (runs automatically every morning)
+├── config/
+│   ├── user_config.yaml     ← your name and email (filled in during setup)
+│   └── job_preferences.yaml ← your target roles and preferences (opened in Notepad during setup)
+├── Skills/                  ← how the agent scores and writes job summaries (no need to edit)
+├── memory/
+│   ├── memory_applied_jobs.md    ← jobs you applied to (updated automatically)
+│   ├── memory_pending_jobs.md    ← tracks the 3-day reminder limit (updated automatically)
+│   └── memory_user_feedback.md  ← feedback from your email replies (updated automatically)
+├── cv/
+│   └── CV.pdf               ← your CV (you add this during setup)
+└── output/
+    └── daily_digest_YYYY-MM-DD.md  ← saved copy of each day's digest
+```
+
+You only ever need to touch: `cv/` (your CV) and `config/job_preferences.yaml` (your preferences). Everything else is managed automatically.
+
+---
+
 ## Privacy & security
 
 - Your CV, email address, and App Password **never leave your computer**
