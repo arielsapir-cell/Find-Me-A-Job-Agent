@@ -56,11 +56,16 @@ The agent reads your CV before scoring every job — this is how it knows what e
 
 ### Step 3 — Get a Gmail App Password
 
-1. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
-2. Sign in and create an App Password for "Mail"
-3. Copy the 16-character code (you'll use it in Step 5)
+A Gmail App Password is a special 16-character code that Google generates for you. It allows the agent to send emails through your Gmail account — Google doesn't allow regular apps to use your normal password for security reasons.
 
-> Gmail App Passwords require 2-Step Verification on your Google account.
+**Before you start:** Make sure 2-Step Verification is enabled on your Google account. Without it, App Passwords won't be available. You can enable it at [myaccount.google.com/security](https://myaccount.google.com/security).
+
+**To get your App Password:**
+1. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+2. Sign in with your Gmail account
+3. Type any name (e.g. "Job Agent") and click **Create**
+4. Google will show you a 16-character code — **copy it now**, it won't be shown again
+5. You'll paste this code when `setup.ps1` asks for it
 
 ### Step 4 — Connect Gmail to Claude
 
