@@ -174,15 +174,23 @@ Write-Host "[OK] send_email.ps1 created in AppData." -ForegroundColor Green
 
 # ── 7. Task Scheduler ─────────────────────────────────
 Write-Host ""
-$Answer = Read-Host "Set up automatic daily run at 8:00 AM via Task Scheduler? (Y/N)"
+$Answer = Read-Host "Set up automatic daily run at 8:00 AM? (Y/N)"
 if ($Answer -match "^[Yy]") {
     $ScriptPath = "$ProjectDir\run_job_agent.ps1"
-    $TaskAction = "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$ScriptPath`""
     try {
-        schtasks.exe /Create /TN "JobAgentDailyDigest" /SC DAILY /ST "08:00" /TR $TaskAction /F 2>&1 | Out-Null
-        Write-Host "[OK] Task Scheduler task created. Agent will run daily at 8:00 AM." -ForegroundColor Green
+        $Action   = New-ScheduledTaskAction -Execute "powershell.exe" `
+                        -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$ScriptPath`""
+        $Trigger  = New-ScheduledTaskTrigger -Daily -At "08:00"
+        $Settings = New-ScheduledTaskSettingsSet `
+                        -StartWhenAvailable `
+                        -ExecutionTimeLimit (New-TimeSpan -Hours 2)
+        Register-ScheduledTask -TaskName "JobAgentDailyDigest" `
+                        -Action $Action -Trigger $Trigger -Settings $Settings -Force | Out-Null
+        Write-Host "[OK] Scheduled: agent runs daily at 8:00 AM." -ForegroundColor Green
+        Write-Host "     If your computer is off at 8:00 AM, the agent will run automatically" -ForegroundColor Green
+        Write-Host "     the next time you turn it on and log in." -ForegroundColor Green
     } catch {
-        Write-Host "WARNING: Could not create Task Scheduler task: $_" -ForegroundColor Yellow
+        Write-Host "WARNING: Could not create scheduled task: $_" -ForegroundColor Yellow
         Write-Host "You can run the agent manually with: .\run_job_agent.ps1"
     }
 }

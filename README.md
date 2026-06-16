@@ -99,9 +99,13 @@ cd path\to\linkedin-job-agent
 
 The setup script will:
 - Verify Claude Code is installed
-- Ask for your Gmail App Password and encrypt it securely (Windows DPAPI)
+- Open a folder for you to drag your CV into
+- Open your preferences file in Notepad to edit
+- Ask for your name, email, and Gmail App Password — and encrypt it securely (Windows DPAPI)
 - Create the necessary files in `AppData\Local\JobAgent\`
 - Optionally register a Windows Task Scheduler task to run every morning at 8:00 AM
+
+> **If your computer is off at 8:00 AM:** no problem — the agent is configured to run automatically the next time you turn your computer on and log in. You won't miss a day.
 
 ---
 
