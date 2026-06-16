@@ -182,15 +182,15 @@ Here's a real example of the digest email, showing all four sections in a single
 
 **1 — Email title and confirmed applications**
 
-<img src="assets/screenshots/section-1-updates.png" alt="Email title and application confirmations">
+<div align="right"><img src="assets/screenshots/section-1-updates.png" alt="Email title and application confirmations"></div>
 
 **2 — New job match (example)**
 
-<img src="assets/screenshots/section-2-new-job.png" alt="New job with match score and description">
+<div align="right"><img src="assets/screenshots/section-2-new-job.png" alt="New job with match score and description"></div>
 
 **3 — Filtered out jobs and reminders from previous digest**
 
-<img src="assets/screenshots/section-3-filtered.png" alt="Jobs filtered out with reasons, and reminders for pending applications">
+<div align="right"><img src="assets/screenshots/section-3-filtered.png" alt="Jobs filtered out with reasons, and reminders for pending applications"></div>
 
 The email is written in Hebrew and contains four sections:
 
