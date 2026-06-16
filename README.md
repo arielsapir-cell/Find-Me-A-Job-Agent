@@ -42,11 +42,15 @@ cd linkedin-job-agent
 
 ### Step 2 — Add your CV
 
-Place your CV as a PDF in the `cv/` folder:
+Place your CV as a PDF in the `cv/` folder, named `CV.pdf`:
 
 ```
 cv/CV.pdf
 ```
+
+The agent reads your CV before scoring every job — this is how it knows what experience you have, which roles suit you, and why a specific job is or isn't a good fit. Without your CV, all scores will be generic and inaccurate.
+
+> You can add multiple CV files if you have different versions (e.g., one focused on Product, one on Growth/Retention). The agent will read all of them and use whichever is most relevant to each job.
 
 ### Step 3 — Get a Gmail App Password
 
@@ -64,14 +68,23 @@ cv/CV.pdf
 
 ### Step 5 — Edit your configuration
 
-Open `config/user_config.yaml` and fill in your details:
+**`config/user_config.yaml`** — your basic details:
 
 ```yaml
-email: "you@gmail.com"
-name: "Your Name"
+email: "you@gmail.com"   # The digest will be sent here
+name: "Your Name"        # Used by the agent when writing your fit analysis
 ```
 
-Open `config/job_preferences.yaml` and edit to match your target roles, locations, and seniority.
+**`config/job_preferences.yaml`** — this is the most important file to personalize. It tells the agent:
+
+- **`target_job_families`** — the role types you're looking for (e.g., Product Manager, Growth, Lifecycle, Brand)
+- **`title_keywords_include`** — keywords in a job title that make it relevant to you
+- **`title_keywords_exclude`** — keywords that mean a job is definitely not for you (e.g., "sales", "software engineer")
+- **`preferred_company_types`** — B2C, B2B, B2B2C, etc.
+- **`locations_preferred`** — cities or regions you'd consider
+- **`seniority_rules`** — whether you're looking for mid-level, senior, or management roles
+
+> The Skills files (`Skills/`) do not need to be edited — they adapt automatically based on your CV and job_preferences.yaml.
 
 ### Step 6 — Run the setup script
 
