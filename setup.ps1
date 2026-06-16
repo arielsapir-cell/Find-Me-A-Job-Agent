@@ -15,24 +15,38 @@ Write-Host ""
 # ── 1. Check Claude Code ──────────────────────────────
 $ClaudePath = "C:\Users\$env:USERNAME\AppData\Roaming\npm\claude.cmd"
 if (-not (Test-Path $ClaudePath)) {
-    Write-Host "ERROR: Claude Code CLI not found at:" -ForegroundColor Red
-    Write-Host "  $ClaudePath" -ForegroundColor Red
+    Write-Host "ERROR: Claude Code CLI not found." -ForegroundColor Red
     Write-Host ""
-    Write-Host "Install it with:"
-    Write-Host "  npm install -g @anthropic-ai/claude-code"
-    Write-Host ""
-    Write-Host "Then re-run this setup."
+    Write-Host "To install it:"
+    Write-Host "  Step 1 — Install Node.js from https://nodejs.org (choose the LTS version)"
+    Write-Host "  Step 2 — Open a new PowerShell window and run:"
+    Write-Host "             npm install -g @anthropic-ai/claude-code"
+    Write-Host "  Step 3 — Run: claude login"
+    Write-Host "  Step 4 — Re-run this setup."
     exit 1
 }
 Write-Host "[OK] Claude Code found." -ForegroundColor Green
 
-# ── 2. Check CV ───────────────────────────────────────
+# ── 2. Add CV ─────────────────────────────────────────
 $CvPath = "$ProjectDir\cv\CV.pdf"
 if (-not (Test-Path $CvPath)) {
     Write-Host ""
-    Write-Host "WARNING: CV not found at cv\CV.pdf" -ForegroundColor Yellow
-    Write-Host "Place your CV as cv\CV.pdf before running the agent."
-    Write-Host "(Setup will continue, but the agent needs the CV to score jobs.)"
+    Write-Host "============================================"
+    Write-Host "  Add your CV"
+    Write-Host "============================================"
+    Write-Host ""
+    Write-Host "A File Explorer window will open. Drag your CV (PDF) into it."
+    Write-Host "Rename the file to: CV.pdf"
+    Write-Host ""
+    Start-Process explorer.exe "$ProjectDir\cv"
+    Read-Host "Press Enter once you've added CV.pdf to the folder"
+
+    if (-not (Test-Path $CvPath)) {
+        Write-Host "WARNING: CV.pdf still not found. The agent will have limited accuracy without it." -ForegroundColor Yellow
+        Write-Host "You can add it later at: $ProjectDir\cv\CV.pdf"
+    } else {
+        Write-Host "[OK] CV found." -ForegroundColor Green
+    }
 }
 else {
     Write-Host "[OK] CV found." -ForegroundColor Green
@@ -73,7 +87,21 @@ else {
 
 [System.IO.File]::WriteAllText($UserConfigPath, $ConfigRaw, [System.Text.Encoding]::UTF8)
 
-# ── 4. Gmail App Password ─────────────────────────────
+# ── 4. Edit job preferences ───────────────────────────
+Write-Host ""
+Write-Host "============================================"
+Write-Host "  Edit your job preferences"
+Write-Host "============================================"
+Write-Host ""
+Write-Host "A Notepad window will open with your preferences file."
+Write-Host "Edit it to match your target roles, locations, and seniority."
+Write-Host "Save and close Notepad when done."
+Write-Host ""
+$PrefsPath = "$ProjectDir\config\job_preferences.yaml"
+Start-Process notepad.exe $PrefsPath -Wait
+Write-Host "[OK] Preferences saved." -ForegroundColor Green
+
+# ── 5. Gmail App Password ─────────────────────────────
 Write-Host ""
 Write-Host "You need a Gmail App Password (not your regular Gmail password)."
 Write-Host "Steps:"
@@ -86,7 +114,7 @@ $AppPasswordPlain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto(
     [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($AppPassword)
 )
 
-# ── 5. Create AppData folder and files ────────────────
+# ── 6. Create AppData folder and files ────────────────
 New-Item -ItemType Directory -Force -Path $JobAgentDir | Out-Null
 
 # Write personalized send_email.ps1
@@ -144,7 +172,7 @@ Write-Host ""
 Write-Host "[OK] Credentials encrypted and saved." -ForegroundColor Green
 Write-Host "[OK] send_email.ps1 created in AppData." -ForegroundColor Green
 
-# ── 6. Task Scheduler ─────────────────────────────────
+# ── 7. Task Scheduler ─────────────────────────────────
 Write-Host ""
 $Answer = Read-Host "Set up automatic daily run at 8:00 AM via Task Scheduler? (Y/N)"
 if ($Answer -match "^[Yy]") {
@@ -159,7 +187,7 @@ if ($Answer -match "^[Yy]") {
     }
 }
 
-# ── 7. Claude Gmail permission reminder ───────────────
+# ── 8. Claude Gmail permission reminder ───────────────
 Write-Host ""
 Write-Host "============================================"
 Write-Host "  IMPORTANT: Connect Gmail to Claude"

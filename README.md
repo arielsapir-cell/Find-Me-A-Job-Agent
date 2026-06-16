@@ -23,6 +23,7 @@ Built on [Claude Code](https://claude.ai/code) (Anthropic's CLI). Runs on Window
 | Requirement | Notes |
 |---|---|
 | Windows 10 / 11 | Required (uses PowerShell + Task Scheduler) |
+| [Git](https://git-scm.com/download/win) | Required to download this project (`git clone`) |
 | [Node.js](https://nodejs.org) (v18+) | Required to install Claude Code via npm |
 | [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) | `npm install -g @anthropic-ai/claude-code` then `claude login` |
 | Anthropic account | For Claude Code access |
