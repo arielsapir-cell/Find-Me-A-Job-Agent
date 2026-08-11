@@ -40,6 +40,15 @@ Read the candidate's CV from the /cv folder and their preferences from config/jo
 - Very senior expectations clearly beyond the candidate's experience
 - Irrelevant role family
 
+## Learned preferences (read before scoring)
+
+Before scoring any job, the agent reads:
+- `memory/memory_user_feedback.md` — entries with `feedback_type: positive_feedback` or `preference_note`
+- `memory/memory_applied_jobs.md` — entries where `was_previously_recommended_by_agent: yes`
+
+Extract role types, domains, and company types from those entries and apply a **+1 bonus** (capped at 10)
+to any job that closely matches. Do NOT penalize based on user_feedback rejections — rejection is per-job only.
+
 ## Seniority rules
 
 Follow the seniority_rules defined in config/job_preferences.yaml.

@@ -54,7 +54,8 @@ Steps (follow in order, do not skip any):
    - Act on each feedback item:
      * If the candidate says a job is not relevant / should be removed: add that job to
        memory_applied_jobs.md with applied_confirmed_via: user_feedback and
-       notes: "נדחה ע"י המשתמש — לא להציג שוב". Also mark it status: expired in memory_pending_jobs.md.
+       notes: "נדחה ע"י המשתמש — לא להציג שוב". Also mark it status: expired,
+       expiry_reason: user_feedback in memory_pending_jobs.md.
      * If the candidate gives positive feedback about a job: log it to memory_user_feedback.md.
      * If the candidate gives a general preference note: log it to memory_user_feedback.md and
        apply it to today's scoring.
@@ -66,6 +67,10 @@ Steps (follow in order, do not skip any):
    or Hebrew equivalents. Cross-reference with today's jobs.
    Remove already-applied jobs from the list. Log newly found applications to
    memory/memory_applied_jobs.md.
+   Exception: if a job is in memory_applied_jobs.md ONLY because of user feedback rejection
+   (applied_confirmed_via: user_feedback AND notes contains "נדחה ע"י המשתמש") — do NOT
+   remove it from today's list if its URL appeared in a fresh LinkedIn alert from the last 24h (step 1).
+   Treat it as a new job worth reconsidering.
 
 3. Parse each email's plaintext body: extract company, role title, location,
    LinkedIn job URL. Deduplicate. Filter excluded title keywords from
@@ -73,9 +78,14 @@ Steps (follow in order, do not skip any):
 
 3b. Apply the 3-day pending rule using memory/memory_pending_jobs.md:
    - For each job that passed step 3:
-     * If the job is in memory_pending_jobs.md with status: expired → skip it, do not include.
+     * If the job is in memory_pending_jobs.md with status: expired:
+       - expiry_reason: time_limit → always skip, do not include.
+       - expiry_reason: user_feedback AND the job URL appeared in a fresh LinkedIn alert from step 1
+         → treat as new: reset status to pending, first_shown: today, last_shown: today,
+         times_shown: 1, remove expiry_reason. Include in digest.
+       - expiry_reason: user_feedback AND NOT a fresh alert → skip, do not include.
      * If the job is in memory_pending_jobs.md with status: pending AND (today - first_shown) >= 3 days
-       → mark status: expired in memory_pending_jobs.md, save, and skip the job.
+       → mark status: expired, expiry_reason: time_limit in memory_pending_jobs.md, save, and skip the job.
      * If the job is in memory_pending_jobs.md with status: pending AND fewer than 3 days have passed
        → keep the job in today's digest. Update last_shown to today, increment times_shown.
      * If the job is not in memory_pending_jobs.md at all → it is new. Add a new entry:
@@ -83,7 +93,15 @@ Steps (follow in order, do not skip any):
        first_shown: today, last_shown: today, times_shown: 1, status: pending.
    - Save memory_pending_jobs.md after processing all jobs.
 
-4. For each remaining job:
+4. Before scoring any job, load learned preference signals:
+   - Read memory/memory_user_feedback.md: collect all entries with feedback_type: positive_feedback
+     or preference_note. Note the role types, domains, and company types mentioned.
+   - Read memory/memory_applied_jobs.md: collect all jobs where was_previously_recommended_by_agent: yes.
+     Note their role_title and category as positive signals.
+   When scoring, give a +1 bonus (capped at 10) to any job that closely matches these signals.
+   Do NOT penalize any job based on user_feedback rejections — those filter only the specific job.
+
+   Then for each remaining job:
    - Fetch the job description via WebFetch if accessible.
    - Score using job_matching_skill.md (1-10).
    - Search LinkedIn for a recruiter or hiring manager at the company.
