@@ -65,12 +65,15 @@ Steps (follow in order, do not skip any):
 2. Search Gmail for application confirmation emails (newer_than:60d) with subjects like
    "thank you for applying", "application received", "your application was sent",
    or Hebrew equivalents. Cross-reference with today's jobs.
-   Remove already-applied jobs from the list. Log newly found applications to
-   memory/memory_applied_jobs.md.
-   Exception: if a job is in memory_applied_jobs.md ONLY because of user feedback rejection
-   (applied_confirmed_via: user_feedback AND notes contains "נדחה ע"י המשתמש") — do NOT
-   remove it from today's list if its URL appeared in a fresh LinkedIn alert from the last 24h (step 1).
-   Treat it as a new job worth reconsidering.
+   Cross-reference with memory/memory_applied_jobs.md using the following rules:
+   - If the exact LinkedIn job URL matches an entry → skip it. Same posting, no need to show again.
+   - If only the company name matches but the URL is different → do NOT skip it.
+     Score and show it if it passes the threshold. Add a note at the end of the entry:
+     "⚠️ הגשת לחברה זו בעבר — [previous role title]"
+   - If a job is in memory_applied_jobs.md with applied_confirmed_via: user_feedback
+     (notes: "נדחה ע"י המשתמש") AND its exact URL appeared in a fresh LinkedIn alert (step 1)
+     → reset it in memory_pending_jobs.md to pending and show it again.
+   Log newly found applications to memory/memory_applied_jobs.md.
 
 3. Parse each email's plaintext body: extract company, role title, location,
    LinkedIn job URL. Deduplicate. Filter excluded title keywords from
