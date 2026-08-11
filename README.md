@@ -14,9 +14,11 @@ You set it up once. After that, it runs on its own every day.
 - Scores each job from 1 to 10 based on your CV and what you're looking for
 - Skips jobs you already applied to (detects this automatically from your Gmail)
 - Skips jobs that are no longer accepting applications
+- Finds a recruiter or talent acquisition person at the company (by searching LinkedIn public profiles — not your own connections)
 - Sends you a daily email digest at 8:00 AM in Hebrew
 - Learns from your feedback — reply to the email, and the next morning the agent boosts similar jobs you liked and hides jobs you flagged as irrelevant
 - If you mark a job as "not relevant", it won't appear again — unless LinkedIn sends a fresh alert for it, in which case it gets another chance
+- If the same company posts a different role, it appears again with a note: "⚠️ הגשת לחברה זו בעבר — [previous role]" — only the exact same job URL is permanently skipped
 - Stops showing you a job after 3 days if you haven't applied to it (permanent, not reversible)
 
 ---
