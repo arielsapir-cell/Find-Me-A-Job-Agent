@@ -15,8 +15,9 @@ You set it up once. After that, it runs on its own every day.
 - Skips jobs you already applied to (detects this automatically from your Gmail)
 - Skips jobs that are no longer accepting applications
 - Sends you a daily email digest at 8:00 AM in Hebrew
-- Learns from your feedback — reply to the email with a note, and the agent will act on it the next morning
-- Stops showing you a job after 3 days if you haven't applied to it
+- Learns from your feedback — reply to the email, and the next morning the agent boosts similar jobs you liked and hides jobs you flagged as irrelevant
+- If you mark a job as "not relevant", it won't appear again — unless LinkedIn sends a fresh alert for it, in which case it gets another chance
+- Stops showing you a job after 3 days if you haven't applied to it (permanent, not reversible)
 
 ---
 
@@ -224,9 +225,9 @@ You don't need to do anything. Every morning you'll receive an email with the da
 Just reply to the digest email — in Hebrew or English. The agent will read your reply the next morning and act on it.
 
 **Examples of what you can write:**
-- "The [Company] job isn't relevant, please remove it" — the agent will never show it again
-- "You were right about [Company X], I'm interested" — logged as a positive signal
-- "I'm not interested in B2B roles" — applied to future scoring
+- "The [Company] job isn't relevant, please remove it" — hidden from future digests (but if LinkedIn sends a fresh alert for the same job, it will reappear)
+- "You were right about [Company X], I'm interested" — logged as a positive signal, similar roles get a +1 score bonus going forward
+- "I'm not interested in B2B roles" — applied to future scoring as a preference note
 
 The next day's email will include a note confirming what was done with your feedback.
 
@@ -241,6 +242,7 @@ Each job gets a score from 1 to 10 based on:
 - Whether the location works for you
 - Whether the company type matches your preferences (B2C, B2B, etc.)
 - Whether the seniority level is realistic for you
+- **Learned preferences** — roles similar to jobs you previously applied to or gave positive feedback on get a +1 bonus
 
 **Only jobs scoring 6 or higher appear in the digest.**
 A score of 8–10 is marked as "התאמה מצוינת" (excellent fit).
