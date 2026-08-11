@@ -107,12 +107,7 @@ Steps (follow in order, do not skip any):
    Then for each remaining job:
    - Fetch the job description via WebFetch if accessible.
    - Score using job_matching_skill.md (1-10).
-   - Search LinkedIn for a person whose current role is recruiting or talent acquisition at this company.
-     Search for people with titles like "Recruiter", "Talent Acquisition", "HR Manager", "People & Culture",
-     "Head of HR", or similar — currently working at the specific company. Do not use the candidate's
-     own LinkedIn connections or pull names from the job description. Find a real public LinkedIn profile
-     of someone who is actively recruiting at this company. If found, return their name, title, and
-     LinkedIn URL. If not found, return "לא נמצא איש קשר".
+   - Find a recruiter at this company using Skills/recruiter_search_skill.md.
 
 5. Include only jobs with score 6 or higher.
 
